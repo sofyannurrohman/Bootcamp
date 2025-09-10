@@ -6,7 +6,9 @@ using ExpressionDemo;
 
     // Section 1: Constants and Variables - The Foundation
     ExpressionHelper.DemonstrateConstantsAndVariables();
-
+    // Section 2: Binary Operators - Working with Two Values
+    ExpressionHelper.DemonstrateBinaryOperators();
+            
 
     Console.WriteLine("\n=== MASTERY ACHIEVED ===");
     Console.WriteLine("You now understand how expressions and operators work together");
