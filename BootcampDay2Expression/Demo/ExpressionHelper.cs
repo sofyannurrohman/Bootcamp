@@ -1,3 +1,4 @@
+using ExpressionMethodHelper;
 namespace ExpressionDemo
 {
     public class ExpressionHelper
@@ -95,5 +96,120 @@ namespace ExpressionDemo
 
             Console.WriteLine("\nRemember: Binary operators need exactly two operands to work\n");
         }
+        public static void DemonstrateUnaryOperators()
+        {
+            Console.WriteLine("=== UNARY OPERATORS ===");
+            Console.WriteLine("One operand, powerful effects - the precision tools of programming\n");
+
+            // Increment and decrement operators
+            Console.WriteLine("--- Increment and Decrement Operators ---");
+            int counter = 5;
+
+            Console.WriteLine($"Starting counter: {counter}");
+            Console.WriteLine($"counter++: {counter++} (post-increment, shows {counter - 1}, then increments)");
+            Console.WriteLine($"Current counter: {counter}");
+            Console.WriteLine($"++counter: {++counter} (pre-increment, increments first, then shows {counter})");
+            Console.WriteLine($"Current counter: {counter}");
+
+            Console.WriteLine($"counter--: {counter--} (post-decrement, shows {counter + 1}, then decrements)");
+            Console.WriteLine($"Current counter: {counter}");
+            Console.WriteLine($"--counter: {--counter} (pre-decrement, decrements first, then shows {counter})");
+            Console.WriteLine($"Final counter: {counter}");
+
+            // Unary plus and minus
+            Console.WriteLine("\n--- Unary Plus and Minus ---");
+            int positive = 42;
+            int negative = -positive;  // Unary minus
+            int stillPositive = +positive;  // Unary plus (rarely used)
+
+            Console.WriteLine($"Original: {positive}");
+            Console.WriteLine($"Negated: {negative}");
+            Console.WriteLine($"Explicitly positive: {stillPositive}");
+
+            // Logical NOT operator
+            Console.WriteLine("\n--- Logical NOT Operator ---");
+            bool isActive = true;
+            bool isInactive = !isActive;  // Logical NOT
+
+            Console.WriteLine($"Is active: {isActive}");
+            Console.WriteLine($"Is inactive: {isInactive}");
+
+            // Practical example with user status
+            bool isLoggedIn = false;
+            bool needsLogin = !isLoggedIn;
+
+            Console.WriteLine($"User logged in: {isLoggedIn}");
+            Console.WriteLine($"Needs to login: {needsLogin}");
+
+            // Bitwise NOT operator (complement)
+            Console.WriteLine("\n--- Bitwise NOT Operator ---");
+            byte value = 5;  // Binary: 00000101
+            byte complement = (byte)~value;  // Binary: 11111010
+
+            Console.WriteLine($"Original value: {value} (binary: {Convert.ToString(value, 2).PadLeft(8, '0')})");
+            Console.WriteLine($"Bitwise NOT: {complement} (binary: {Convert.ToString(complement, 2).PadLeft(8, '0')})");
+
+            // Type casting operator
+            Console.WriteLine("\n--- Type Casting (Conversion) Operators ---");
+            double preciseValue = 123.789;
+            int roundedDown = (int)preciseValue;  // Explicit cast
+
+            Console.WriteLine($"Original double: {preciseValue}");
+            Console.WriteLine($"Cast to int: {roundedDown} (truncated, not rounded)");
+
+            // typeof operator
+            Console.WriteLine("\n--- typeof Operator ---");
+            Type stringType = typeof(string);
+            Type intType = typeof(int);
+
+            Console.WriteLine($"Type of string: {stringType}");
+            Console.WriteLine($"Type of int: {intType}");
+
+            Console.WriteLine("\nUnary operators are compact but powerful - master them for cleaner code\n");
+        }
+        public static void DemonstrateVoidExpressions()
+        {
+            Console.WriteLine("=== VOID EXPRESSIONS ===");
+            Console.WriteLine("Operations that do work but don't return values\n");
+
+            Console.WriteLine("--- Understanding Void Methods ---");
+            Console.WriteLine("Methods like Console.WriteLine() perform actions but return nothing");
+
+            // This is a void expression - it does something but returns no value
+            Console.WriteLine("This line itself is a void expression!");
+
+            // Demonstrating that void expressions can't be used as operands
+            Console.WriteLine("\n--- Why Void Expressions Can't Be Operands ---");
+            Console.WriteLine("The following would cause compile errors:");
+            Console.WriteLine("// int x = 1 + Console.WriteLine(\"Hello\"); // ERROR!");
+            Console.WriteLine("// string result = \"Result: \" + PrintMessage(); // ERROR!");
+
+            // Valid uses of void expressions
+            Console.WriteLine("\n--- Valid Uses of Void Expressions ---");
+           MethodHelper.PrintWelcomeMessage();  // Called as a statement
+
+            int count = 5;
+            MethodHelper.ProcessData(count);     // Called as a statement
+
+            // Void expressions in control structures
+            if (DateTime.Now.Hour < 12)
+            {
+                MethodHelper.PrintMorningGreeting();  // Void expression in if block
+            }
+            else
+            {
+                MethodHelper.PrintAfternoonGreeting(); // Void expression in else block
+            }
+
+            // Void expressions in loops
+            Console.WriteLine("\n--- Void Expressions in Loops ---");
+            for (int i = 1; i <= 3; i++)
+            {
+                MethodHelper.PrintCountdown(i);  // Void expression in loop
+            }
+
+            Console.WriteLine("\nKey point: Void expressions do important work, they just don't give you a value back\n");
+        }
     }
+
 }

@@ -8,7 +8,8 @@ using ExpressionDemo;
     ExpressionHelper.DemonstrateConstantsAndVariables();
     // Section 2: Binary Operators - Working with Two Values
     ExpressionHelper.DemonstrateBinaryOperators();
-            
+    
+    
 
     Console.WriteLine("\n=== MASTERY ACHIEVED ===");
     Console.WriteLine("You now understand how expressions and operators work together");
