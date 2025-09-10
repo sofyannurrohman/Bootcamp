@@ -1,12 +1,14 @@
 ﻿using System;
+using Entities.User;
 
 class Program
 {
     static void Main()
     {
         DisplayWelcomeMessage();
-        string userName = GetUserName();
-        GreetUser(userName);
+
+        User user = GetUserInfo();
+        GreetUser(user);
     }
 
     static void DisplayWelcomeMessage()
@@ -15,21 +17,44 @@ class Program
         Console.WriteLine("================================");
     }
 
-    static string GetUserName()
+    static User GetUserInfo()
     {
-        Console.Write("Please enter your name: ");
-        return Console.ReadLine()?.Trim() ?? "";
+        User user = new User();
+
+        Console.Write("Please enter your first name: ");
+        user.firstName = Console.ReadLine()?.Trim() ?? "";
+
+        Console.Write("Please enter your last name: ");
+        user.lastName = Console.ReadLine()?.Trim() ?? "";
+
+        Console.Write("Please enter your birth date (yyyy-MM-dd): ");
+        if (DateTime.TryParse(Console.ReadLine(), out DateTime birthDate))
+        {
+            user.BirthDate = birthDate;
+        }
+        else
+        {
+            user.BirthDate = DateTime.MinValue; // fallback if invalid
+        }
+
+        return user;
     }
 
-    static void GreetUser(string name)
+    static void GreetUser(User user)
     {
-        if (string.IsNullOrWhiteSpace(name))
+        string fullName = $"{user.firstName} {user.lastName}".Trim();
+        if (string.IsNullOrWhiteSpace(fullName))
         {
             Console.WriteLine("Hello, stranger!");
         }
         else
         {
-            Console.WriteLine($"Hello, {name}!");
+            Console.WriteLine($"Hello, {fullName}!");
+        }
+
+        if (user.BirthDate != DateTime.MinValue)
+        {
+            Console.WriteLine($"Your birth date is: {user.BirthDate:yyyy-MM-dd}");
         }
     }
 }
