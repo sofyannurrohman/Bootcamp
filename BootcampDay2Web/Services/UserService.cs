@@ -18,7 +18,7 @@ namespace Services.UserService
             _context = context;
         }
 
-        public bool Register(UserRegisterDto dto)
+        public async Task<bool> RegisterAsync(UserRegisterDto dto)
         {
             if (_context.Users.Any(u => u.Email == dto.Email))
                 return false;
@@ -30,20 +30,20 @@ namespace Services.UserService
                 Password = HashPassword(dto.Password)
             };
 
-            _context.Users.Add(user);
-            _context.SaveChanges();
+            await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
             return true;
         }
 
-        public User? Login(UserLoginDto dto)
+        public async Task<User?> LoginAsync(UserLoginDto dto)
         {
             var hashedPassword = HashPassword(dto.Password);
-            return _context.Users.FirstOrDefault(u => u.Email == dto.Email && u.Password == hashedPassword);
+            return await _context.Users.FirstOrDefaultAsync(u => u.Email == dto.Email && u.Password == hashedPassword);
         }
 
-        public List<User> GetUsers()
+        public async Task<List<User>> GetUsersAsync()
         {
-            return _context.Users.ToList();
+            return await _context.Users.ToListAsync();
         }
 
         private string HashPassword(string password)

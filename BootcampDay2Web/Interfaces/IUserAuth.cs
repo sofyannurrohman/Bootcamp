@@ -7,9 +7,8 @@ namespace Interfaces.IUserAuth
 {
     public interface IUserAuth
     {
-
-        bool Register(UserRegisterDto dto);
-        User? Login(UserLoginDto dto);
-        List<User> GetUsers();
+        Task<bool> RegisterAsync(UserRegisterDto dto);
+        Task<User?> LoginAsync(UserLoginDto dto);
+        Task<List<User>> GetUsersAsync();
     }
 }

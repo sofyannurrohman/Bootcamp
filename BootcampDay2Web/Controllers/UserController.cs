@@ -23,11 +23,11 @@ namespace Controllers
     }
 
     [HttpPost]
-    public IActionResult Register(UserRegisterDto dto)
+    public async Task<IActionResult> Register(UserRegisterDto dto)
     {
         if (ModelState.IsValid)
         {
-            bool success = _userService.Register(dto);
+            bool success = await _userService.RegisterAsync(dto);
             if (success)
             {
                 return RedirectToAction("Login"); // redirect to Login after register
@@ -48,11 +48,11 @@ namespace Controllers
     }
 
     [HttpPost]
-    public IActionResult Login(UserLoginDto dto)
+    public async Task<IActionResult> Login(UserLoginDto dto)
 {
     if (ModelState.IsValid)
     {
-        var user = _userService.Login(dto); // returns User? not bool
+        var user = await _userService.LoginAsync(dto); // returns User? not bool
         if (user != null)
         {
             return RedirectToAction("Welcome", new { name = user.Email });
