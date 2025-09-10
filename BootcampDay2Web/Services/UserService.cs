@@ -2,32 +2,56 @@ using Dtos.UserLoginDto;
 using Dtos.UserRegisterDto;
 using Entities.User;
 using Interfaces.IUserAuth;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
+using System.Text;
+using Data;
 
 namespace Services.UserService
 {
     public class UserService : IUserAuth
     {
-        private readonly List<User> _users = new List<User>();
+        private readonly AppDbContext _context;
+
+        public UserService(AppDbContext context)
+        {
+            _context = context;
+        }
 
         public bool Register(UserRegisterDto dto)
         {
-            if (_users.Any(u => u.Email == dto.Email))
+            if (_context.Users.Any(u => u.Email == dto.Email))
                 return false;
-            _users.Add(new User
+
+            var user = new User
             {
-                FirstName = dto.Name,
+                Name = dto.Name,
                 Email = dto.Email,
-                Password = dto.Password
-            });
+                Password = HashPassword(dto.Password)
+            };
+
+            _context.Users.Add(user);
+            _context.SaveChanges();
             return true;
         }
+
         public User? Login(UserLoginDto dto)
         {
-            return _users.FirstOrDefault(u => u.Email == dto.Email && u.Password == dto.Password);
+            var hashedPassword = HashPassword(dto.Password);
+            return _context.Users.FirstOrDefault(u => u.Email == dto.Email && u.Password == hashedPassword);
         }
+
         public List<User> GetUsers()
         {
-            return _users;
+            return _context.Users.ToList();
+        }
+
+        private string HashPassword(string password)
+        {
+            using var sha256 = SHA256.Create();
+            var bytes = Encoding.UTF8.GetBytes(password);
+            var hash = sha256.ComputeHash(bytes);
+            return Convert.ToBase64String(hash);
         }
     }
 }

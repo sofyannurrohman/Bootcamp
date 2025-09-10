@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  postgres:
+    container_name: my-postgres
+    image: postgres:alpine
+    environment:
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: bootcampdb
+      LANG: en_US.UTF-8
+      LC_ALL: en_US.UTF-8
+    ports:
+      - "5432:5432"
+    command: postgres -c client_encoding=UTF8
+    restart: unless-stopped
