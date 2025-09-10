@@ -186,7 +186,7 @@ namespace ExpressionDemo
 
             // Valid uses of void expressions
             Console.WriteLine("\n--- Valid Uses of Void Expressions ---");
-           MethodHelper.PrintWelcomeMessage();  // Called as a statement
+            MethodHelper.PrintWelcomeMessage();  // Called as a statement
 
             int count = 5;
             MethodHelper.ProcessData(count);     // Called as a statement
@@ -210,6 +210,145 @@ namespace ExpressionDemo
 
             Console.WriteLine("\nKey point: Void expressions do important work, they just don't give you a value back\n");
         }
+        public static void DemonstrateAssignmentExpressions()
+        {
+            Console.WriteLine("=== ASSIGNMENT EXPRESSIONS ===");
+            Console.WriteLine("Storing values and building chains - the backbone of state management\n");
+
+            // Basic assignment
+            Console.WriteLine("--- Basic Assignment ---");
+            int x = 10;  // Assignment expression that evaluates to 10
+            Console.WriteLine($"x = 10 assigns and evaluates to: {x}");
+
+            // Assignment as part of larger expressions
+            Console.WriteLine("\n--- Assignment Within Expressions ---");
+            int y = 5 * (x = 7);  // First x gets 7, then 5 * 7 = 35 goes to y
+            Console.WriteLine($"After y = 5 * (x = 7):");
+            Console.WriteLine($"x = {x}");
+            Console.WriteLine($"y = {y}");
+
+            // Chained assignments
+            Console.WriteLine("\n--- Chained Assignments ---");
+            int a, b, c, d;
+            a = b = c = d = 100;  // All variables get 100
+
+            Console.WriteLine("After a = b = c = d = 100:");
+            Console.WriteLine($"a = {a}, b = {b}, c = {c}, d = {d}");
+
+            // Compound assignment operators
+            Console.WriteLine("\n--- Compound Assignment Operators ---");
+            int value = 20;
+            Console.WriteLine($"Starting value: {value}");
+
+            value += 10;  // Equivalent to: value = value + 10
+            Console.WriteLine($"After value += 10: {value}");
+
+            value -= 5;   // Equivalent to: value = value - 5
+            Console.WriteLine($"After value -= 5: {value}");
+
+            value *= 2;   // Equivalent to: value = value * 2
+            Console.WriteLine($"After value *= 2: {value}");
+
+            value /= 3;   // Equivalent to: value = value / 3
+            Console.WriteLine($"After value /= 3: {value}");
+
+            value %= 7;   // Equivalent to: value = value % 7
+            Console.WriteLine($"After value %= 7: {value}");
+
+            // String compound assignment
+            Console.WriteLine("\n--- String Compound Assignment ---");
+            string message = "Hello";
+            Console.WriteLine($"Starting message: '{message}'");
+
+            message += " World";
+            Console.WriteLine($"After message += \" World\": '{message}'");
+
+            message += "!";
+            Console.WriteLine($"After message += \"!\": '{message}'");
+
+            // Real-world example: score tracking
+            Console.WriteLine("\n--- Real-World Example: Game Score Tracking ---");
+            int playerScore = 0;
+            int round = 1;
+
+            Console.WriteLine($"Game starts - Round {round}, Score: {playerScore}");
+
+            playerScore += 150;  // Player scores points
+            Console.WriteLine($"Round {round++} complete - Score: {playerScore}");
+
+            playerScore += 200;  // Another round
+            Console.WriteLine($"Round {round++} complete - Score: {playerScore}");
+
+            playerScore -= 50;   // Penalty
+            Console.WriteLine($"Penalty applied - Score: {playerScore}");
+
+            playerScore *= 2;    // Bonus multiplier
+            Console.WriteLine($"Bonus multiplier applied - Final Score: {playerScore}");
+
+            Console.WriteLine("\nAssignment expressions are your primary tool for managing program state\n");
+        }
+        public static void DemonstrateNestedExpressions()
+        {
+            Console.WriteLine("=== NESTED EXPRESSIONS ===");
+            Console.WriteLine("Building complex logic by combining simpler expressions\n");
+            
+            Console.WriteLine("--- Basic Nesting with Parentheses ---");
+            // Simple nested expression from the material
+            int result1 = 1 + (12 * 30);
+            Console.WriteLine($"1 + (12 * 30) = {result1}");
+            Console.WriteLine("The parentheses force multiplication to happen first");
+            
+            // More complex nesting
+            Console.WriteLine("\n--- Complex Nested Expressions ---");
+            int a = 5, b = 10, c = 2;
+            
+            int result2 = (a + b) * c;
+            Console.WriteLine($"({a} + {b}) * {c} = {result2}");
+            
+            int result3 = a + (b * c);
+            Console.WriteLine($"{a} + ({b} * {c}) = {result3}");
+            
+            // Deeply nested expression
+            int result4 = ((a + b) * c) + (a * (b - c));
+            Console.WriteLine($"(({a} + {b}) * {c}) + ({a} * ({b} - {c})) = {result4}");
+            
+            // Real-world example: calculating compound interest
+            Console.WriteLine("\n--- Real-World Example: Compound Interest ---");
+            double principal = 1000.0;  // Initial amount
+            double rate = 0.05;         // 5% annual rate
+            int years = 3;              // 3 years
+            int compoundsPerYear = 12;  // Monthly compounding
+            
+            // A = P(1 + r/n)^(nt)
+            double amount = principal * Math.Pow((1 + (rate / compoundsPerYear)), (compoundsPerYear * years));
+            
+            Console.WriteLine($"Principal: ${principal:F2}");
+            Console.WriteLine($"Rate: {rate * 100}% annually");
+            Console.WriteLine($"Time: {years} years, compounded {compoundsPerYear} times per year");
+            Console.WriteLine($"Final amount: ${amount:F2}");
+            Console.WriteLine($"Interest earned: ${amount - principal:F2}");
+            
+            // Boolean logic nesting
+            Console.WriteLine("\n--- Nested Boolean Logic ---");
+            int age = 25;
+            int income = 45000;
+            bool hasGoodCredit = true;
+            bool isEmployed = true;
+            
+            // Complex eligibility check
+            bool isEligibleForLoan = (age >= 18 && age <= 65) && 
+                                   (income >= 30000) && 
+                                   (hasGoodCredit || (isEmployed && income >= 40000));
+            
+            Console.WriteLine($"Age: {age}");
+            Console.WriteLine($"Income: ${income}");
+            Console.WriteLine($"Good credit: {hasGoodCredit}");
+            Console.WriteLine($"Employed: {isEmployed}");
+            Console.WriteLine($"Loan eligible: {isEligibleForLoan}");
+            
+            Console.WriteLine("\nKey lesson: Use parentheses to make your intentions crystal clear\n");
+        }
     }
+    
 
 }
