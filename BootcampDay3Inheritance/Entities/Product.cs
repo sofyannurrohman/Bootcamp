@@ -11,6 +11,7 @@ namespace Classes
         {
             Console.WriteLine($"Created a product");
         }
+        // Define Constructor Product using name field for params
         public Product(string name) : this()
         {
             Name = name;
