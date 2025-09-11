@@ -13,4 +13,8 @@ public class Book : Product
         base.DisplayInfo();
         Console.WriteLine($" Book Author : {Author}");
     }
+    public static explicit operator string(Book b)
+    {
+        return $"{b.Name} by {b.Author}, price {b.Price}";
+    }
 }
