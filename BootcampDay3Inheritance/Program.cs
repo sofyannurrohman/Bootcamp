@@ -64,3 +64,22 @@ string bookInfo = (string)book3; // explicit conversion
 Console.WriteLine(bookInfo);
 
 Console.ReadLine();
+
+
+/* Personal Note :
+    Product p = new Product("Generic Product");
+    p.DisplayInfo();
+    // Output -> Product Name: Generic Product
+
+        Book b = new Book("C# Fundamentals", "John Doe");
+        b.DisplayInfo();
+        // Output -> Book Name: C# Fundamentals
+        //           Book Author: John Doe
+
+        Product pb = new Book("Java Basics", "Jane Smith");
+        pb.DisplayInfo();
+        // Output -> Product Name: Java Basics
+        // 👆 Because of 'new', this calls Product.DisplayInfo()
+        //    (base class version), NOT Book.DisplayInfo()
+    }
+ */

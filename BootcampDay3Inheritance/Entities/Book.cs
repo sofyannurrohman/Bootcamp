@@ -2,7 +2,7 @@ using Classes;
 public class Book : Product
 {
     public string Author { get; set; } = "";
-    public Book(string name, string author, float price) : base(name)
+    public Book(string name, string author, float price) : base(name) // Implement base keyword
     {
         Author = author;
         Price = price;
