@@ -1,0 +1,6 @@
+@BootcampDay3Generic_HostAddress = http://localhost:5100
+
+GET {{BootcampDay3Generic_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
