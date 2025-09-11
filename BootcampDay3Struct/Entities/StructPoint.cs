@@ -1,12 +1,12 @@
-namespace Classes
-{
-    public struct Point
+namespace Classes;
+
+    public struct PointStruct
     {
         public int X;
         public int Y;
 
         // Constructor
-        public Point(int x, int y)
+        public PointStruct(int x, int y)
         {
             X = x;
             Y = y;
@@ -18,4 +18,3 @@ namespace Classes
             Console.WriteLine($"Point at ({X}, {Y})");
         }
     }
-}
