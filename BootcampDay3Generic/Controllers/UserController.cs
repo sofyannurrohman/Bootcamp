@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using BootcampDay3Generic.Models;
 using BootcampDay3Generic.Repositories;
-using BootcampDay3Generic.Models;
 
 namespace BootcampDay3Generic.Controllers
 {
