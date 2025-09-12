@@ -1,4 +1,5 @@
-using MyApp.Repositories;
+using BootcampDay3InterfaceApi.Interface;
+using BootcampDay3InterfaceApi.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,8 @@ builder.Services.AddControllers();
 
 // DI implementation for IUserRepository with InMemoryUserRepository
 builder.Services.AddSingleton<IUserRepository, InMemoryUserRepository>(); //Whenever something asks for IUserRepository, give them a UserRepository
+builder.Services.AddSingleton<ILoggingService, InMemoryUserRepository>(); //Whenever something asks for IUserRepository, give them a UserRepository
+builder.Services.AddSingleton<ICacheService, InMemoryUserRepository>(); //Whenever something asks for IUserRepository, give them a UserRepository
 
 var app = builder.Build();
 

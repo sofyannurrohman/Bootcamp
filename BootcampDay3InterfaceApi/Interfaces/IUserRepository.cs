@@ -1,6 +1,6 @@
 using BootcampDay3InterfaceApi.Models;
 
-namespace MyApp.Repositories
+namespace BootcampDay3InterfaceApi.Interface
 {
     public interface IUserRepository
     {
