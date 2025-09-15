@@ -11,5 +11,6 @@ DelegateClassFADD.FuncAndActionDelegatesDemo();
 DelegateClassDVI.DelegateVsInterfaceDemo();
 DelegateClassDC.DelegateCompatibilityDemo();
 DelegateClassPC.ParameterCompatibilityDemo();
+DelegateClassRTCD.ReturnTypeCompatibilityDemo();
 Console.WriteLine("\nPress any key to exit...");
 Console.ReadKey();
