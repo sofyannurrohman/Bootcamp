@@ -2,19 +2,33 @@
 //Capture User Input
 Console.Write("Enter a number (n): ");
 int n = int.Parse(Console.ReadLine());
-//Foo bar IMPL
-for (int x = 1; x <= n; x++)
-{
-    if (x % 15 == 0)
-        Console.Write("foobar");
-    else if (x % 3 == 0)
-        Console.Write("foo");
-    else if (x % 5 == 0)
-        Console.Write("bar");
-    else
-        Console.Write(x);
-    if (x < n)
-        Console.Write(", ");
-}
-//Write Output
+// Rules dictionary: divisor -> word
+    var rules = new Dictionary<int, string>
+        {
+            { 3, "foo" },
+            { 5, "bar" },
+            { 7, "jazz" }
+    }; // Scalable just  define the divisor rather than adding else if
+
+    // Generalized FooBarJazz implementation
+    for (int x = 1; x <= n; x++)
+        {
+            string output = "";
+
+            foreach (var rule in rules)
+            {
+                if (x % rule.Key == 0)
+                    output += rule.Value;
+            }
+
+            if (string.IsNullOrEmpty(output))
+                output = x.ToString();
+
+            Console.Write(output);
+
+            if (x < n)
+                Console.Write(", ");
+        }
+
+// Write Output
 Console.WriteLine();
