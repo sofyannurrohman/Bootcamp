@@ -2,7 +2,7 @@ namespace BootcampDay5.EventHandler;
 
 public class EventHandlerClassTSEH
 {
-    static void ThreadSafeEventHandlingDemo()
+    public static void ThreadSafeEventHandlingDemo()
     {
         Console.WriteLine("6. THREAD-SAFE EVENT HANDLING");
         Console.WriteLine("=============================");
