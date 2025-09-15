@@ -1,0 +1,24 @@
+<Window x:Class="ChessGame.PromotionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Pawn Promotion" 
+        Height="200" 
+        Width="300"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock Text="Choose promotion piece:" 
+                   Margin="10" 
+                   HorizontalAlignment="Center"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="♕" FontSize="24" Margin="5" Width="50" Height="50" 
+                    Click="Queen_Click" ToolTip="Queen"/>
+            <Button Content="♖" FontSize="24" Margin="5" Width="50" Height="50" 
+                    Click="Rook_Click" ToolTip="Rook"/>
+            <Button Content="♗" FontSize="24" Margin="5" Width="50" Height="50" 
+                    Click="Bishop_Click" ToolTip="Bishop"/>
+            <Button Content="♘" FontSize="24" Margin="5" Width="50" Height="50" 
+                    Click="Knight_Click" ToolTip="Knight"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
