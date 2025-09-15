@@ -1,19 +1,17 @@
-﻿// See https://aka.ms/new-console-template for more information
-//Capture User Input
-Console.Write("Enter a number (n): ");
+﻿Console.Write("Enter a number (n): ");
 string? input = Console.ReadLine();
 if (!int.TryParse(input, out int n))
         {
             Console.WriteLine("Invalid number! Please enter a valid integer.");
-            return; // exit program if input is invalid
+            return;
         }
-// Rules dictionary: divisor -> word
+    // Rules dictionary: divisor -> word
     var rules = new Dictionary<int, string>
         {
             { 3, "foo" },
             { 5, "bar" },
             { 7, "jazz" }
-    }; // Scalable just  define the divisor rather than adding else if
+    }; // Scalable just define the divisor rather than adding else if
 
     // Generalized FooBarJazz implementation
     for (int x = 1; x <= n; x++)
@@ -35,5 +33,4 @@ if (!int.TryParse(input, out int n))
                 Console.Write(", ");
         }
 
-// Write Output
 Console.WriteLine();
