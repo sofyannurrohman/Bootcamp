@@ -1,7 +1,12 @@
 ﻿// See https://aka.ms/new-console-template for more information
 //Capture User Input
 Console.Write("Enter a number (n): ");
-int n = int.Parse(Console.ReadLine());
+string? input = Console.ReadLine();
+if (!int.TryParse(input, out int n))
+        {
+            Console.WriteLine("Invalid number! Please enter a valid integer.");
+            return; // exit program if input is invalid
+        }
 // Rules dictionary: divisor -> word
     var rules = new Dictionary<int, string>
         {
