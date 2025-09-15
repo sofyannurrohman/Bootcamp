@@ -5,6 +5,6 @@ Console.WriteLine("=== Delegates in C# - Complete Demonstration ===\n");
 DelegateClassBDM.BasicDelegateDemo();
 DelegateClassPMD.PluginMethodsDemo();
 DelegateClassISMTD.InstanceAndStaticMethodTargetsDemo();
-
+DelegateClassMDD.MulticastDelegatesDemo();
 Console.WriteLine("\nPress any key to exit...");
 Console.ReadKey();
