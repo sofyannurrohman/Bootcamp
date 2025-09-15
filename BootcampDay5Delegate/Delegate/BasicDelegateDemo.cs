@@ -1,7 +1,7 @@
 namespace DelegateDemo;
 // First, let's define a delegate type - this is like creating a blueprint
 // Any method that takes an int and returns an int can be assigned to this delegate
-public class DelegateClass
+public class DelegateClassBDM
 {
 delegate int Transformer(int x);
 public static void BasicDelegateDemo()
