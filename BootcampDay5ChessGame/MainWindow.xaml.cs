@@ -26,7 +26,7 @@ namespace ChessGame
         private void InitializeBoard()
         {
             ChessBoard.Children.Clear();
-            
+
             for (int row = 0; row < 8; row++)
             {
                 for (int col = 0; col < 8; col++)
@@ -54,13 +54,13 @@ namespace ChessGame
                 {
                     var button = boardButtons[row, col];
                     var piece = game.Board.Squares[row, col];
-                    
+
                     // Update piece display
                     button.Content = piece != null ? GetPieceSymbol(piece) : "";
-                    
+
                     // Reset to base colors first
                     button.Background = (row + col) % 2 == 0 ? Brushes.Beige : Brushes.Brown;
-                    
+
                     // Reset border
                     button.BorderBrush = Brushes.Transparent;
                     button.BorderThickness = new Thickness(1);
@@ -111,7 +111,7 @@ namespace ChessGame
         {
             var btn = (Button)sender;
             var (row, col) = ((int, int))btn.Tag;
-            
+
             Debug.WriteLine($"Clicked: ({row}, {col})");
             Debug.WriteLine($"Selected square: {selectedSquare}");
             Debug.WriteLine($"Current turn: {game.CurrentTurn}");
@@ -121,19 +121,19 @@ namespace ChessGame
                 // select piece
                 var piece = game.Board.Squares[row, col];
                 Debug.WriteLine($"Piece at clicked square: {piece?.Type} {piece?.Color}");
-                
+
                 if (piece != null && piece.Color == game.CurrentTurn)
                 {
                     selectedSquare = (row, col);
                     possibleMoves = game.GetPossibleMoves(row, col);
                     Debug.WriteLine($"Possible moves count: {possibleMoves.Count}");
-                    
+
                     // Debug: Print all possible moves
                     foreach (var move in possibleMoves)
                     {
                         Debug.WriteLine($"  -> ({move.row}, {move.col})");
                     }
-                    
+
                     DrawBoard();
                 }
             }
@@ -142,13 +142,13 @@ namespace ChessGame
                 // attempt move
                 var from = selectedSquare.Value;
                 var to = (row, col);
-                
+
                 Debug.WriteLine($"Attempting move from {from} to {to}");
 
                 if (game.MovePiece(from, to))
                 {
                     Debug.WriteLine("Move successful!");
-                    
+
                     // handle promotion if needed
                     if (game.PendingPromotion != null)
                     {
@@ -175,7 +175,7 @@ namespace ChessGame
         {
             var promotionWindow = new PromotionWindow();
             promotionWindow.Owner = this;
-            
+
             if (promotionWindow.ShowDialog() == true)
             {
                 game.PromotePawn(position, promotionWindow.SelectedPiece);
@@ -187,11 +187,12 @@ namespace ChessGame
         {
             TurnStatus.Text = $"{game.CurrentTurn} to move";
 
+            // Use the new service methods
             if (game.IsCheckmate(game.CurrentTurn))
                 GameStatus.Text = $"Checkmate! {game.CurrentTurn} loses.";
             else if (game.IsStalemate(game.CurrentTurn))
                 GameStatus.Text = "Stalemate! It's a draw.";
-            else if (game.IsInCheck(game.CurrentTurn))
+            else if (game.IsCheck()) // Changed from IsInCheck to IsCheck
                 GameStatus.Text = $"{game.CurrentTurn} is in check!";
             else
                 GameStatus.Text = "";
