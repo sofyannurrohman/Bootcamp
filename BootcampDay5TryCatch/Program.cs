@@ -16,8 +16,8 @@ Console.WriteLine("• Real-world exception handling scenarios\n");
 // Run all demonstrations in order
 TryClassBTC.BasicTryCatchDemo();
 TryClassMCB.MultipleCatchBlocksDemo();
-// ExceptionFiltersDemo();
-// FinallyBlockDemo();
+TryClassEFD.ExceptionFiltersDemo();
+TryClassFB.FinallyBlockDemo();
 // UsingStatementDemo();
 // UsingDeclarationDemo(); // New C# 8+ feature
 // ThrowingExceptionsDemo();
