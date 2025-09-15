@@ -8,7 +8,7 @@ EventHandlerSEP.StandardEventPatternDemo();
 EventHandlerClassEAD.EventAccessorsDemo();
 EventHandlerClassEM.EventModifiersDemo();
 EventHandlerClassTSEH.ThreadSafeEventHandlingDemo();
-// RealWorldECommerceDemo();
+EventHandlerClassREC.RealWorldECommerceDemo();
 
 Console.WriteLine("\nPress any key to exit...");
 Console.ReadKey();
