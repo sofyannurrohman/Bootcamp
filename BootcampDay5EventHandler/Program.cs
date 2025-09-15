@@ -6,7 +6,7 @@ EventHandlerClassBED.BasicEventDeclarationDemo();
 EventHandlerClassEVD.EventVsDelegateDemo();
 EventHandlerSEP.StandardEventPatternDemo();
 EventHandlerClassEAD.EventAccessorsDemo();
-// EventModifiersDemo();
+EventHandlerClassEM.EventModifiersDemo();
 // ThreadSafeEventHandlingDemo();
 // RealWorldECommerceDemo();
 
