@@ -6,5 +6,6 @@ DelegateClassBDM.BasicDelegateDemo();
 DelegateClassPMD.PluginMethodsDemo();
 DelegateClassISMTD.InstanceAndStaticMethodTargetsDemo();
 DelegateClassMDD.MulticastDelegatesDemo();
+DelegateClassGDD.GenericDelegatesDemo();
 Console.WriteLine("\nPress any key to exit...");
 Console.ReadKey();
