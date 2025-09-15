@@ -4,7 +4,7 @@ Console.WriteLine("=== Events in C# - Complete Demonstration ===\n");
 // Run all demonstrations to show event concepts in action
 EventHandlerClassBED.BasicEventDeclarationDemo();
 EventHandlerClassEVD.EventVsDelegateDemo();
-// StandardEventPatternDemo();
+EventHandlerSEP.StandardEventPatternDemo();
 // EventAccessorsDemo();
 // EventModifiersDemo();
 // ThreadSafeEventHandlingDemo();
