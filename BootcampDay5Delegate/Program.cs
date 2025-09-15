@@ -12,5 +12,7 @@ DelegateClassDVI.DelegateVsInterfaceDemo();
 DelegateClassDC.DelegateCompatibilityDemo();
 DelegateClassPC.ParameterCompatibilityDemo();
 DelegateClassRTCD.ReturnTypeCompatibilityDemo();
+DelegateClassRWSD.RealWorldScenarioDemo();
+
 Console.WriteLine("\nPress any key to exit...");
 Console.ReadKey();
