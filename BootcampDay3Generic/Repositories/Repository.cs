@@ -20,7 +20,7 @@ namespace BootcampDay3Generic.Repositories
         public void Add(T entity)
         {
             var prop = typeof(T).GetProperty("Id");
-            prop.SetValue(entity, _nextId++);
+            prop?.SetValue(entity, _nextId++);
             _items.Add(entity);
         }
     }
