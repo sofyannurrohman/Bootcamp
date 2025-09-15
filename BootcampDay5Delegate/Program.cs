@@ -1,2 +1,9 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using DelegateDemo;
+Console.WriteLine("=== Delegates in C# - Complete Demonstration ===\n");
+
+// Run all demonstrations to show delegate concepts in action
+DelegateClass.BasicDelegateDemo();
+
+
+Console.WriteLine("\nPress any key to exit...");
+Console.ReadKey();
