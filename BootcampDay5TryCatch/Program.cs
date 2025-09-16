@@ -18,16 +18,16 @@ TryClassBTC.BasicTryCatchDemo();
 TryClassMCB.MultipleCatchBlocksDemo();
 TryClassEFD.ExceptionFiltersDemo();
 TryClassFB.FinallyBlockDemo();
-// UsingStatementDemo();
-// UsingDeclarationDemo(); // New C# 8+ feature
-// ThrowingExceptionsDemo();
-// ThrowExpressionsDemo(); // C# 7+ feature
-// RethrowingExceptionsDemo();
-// CommonExceptionTypesDemo(); // New section
-// TryParsePatternDemo();
-// ArgumentNullThrowIfNullDemo(); // .NET 6+ feature
-// ReturnCodesAlternativeDemo();
-// RealWorldScenarioDemo();
+TryClassUST.UsingStatementDemo();
+TryClassUSD.UsingDeclarationDemo(); // New C# 8+ feature
+TryClassTEX.ThrowingExceptionsDemo();
+TryClassTE.ThrowExpressionsDemo(); // C# 7+ feature
+TryClassRE.RethrowingExceptionsDemo();
+TryClassCET.CommonExceptionTypesDemo(); // New section
+TryClassTPP.TryParsePatternDemo();
+TryClassANTIN.ArgumentNullThrowIfNullDemo(); // .NET 6+ feature
+TryClassRCA.ReturnCodesAlternativeDemo();
+TryClassRWS.RealWorldScenarioDemo();
 
 Console.WriteLine("=== Training Summary ===");
 Console.WriteLine("You've now seen comprehensive examples of exception handling in C#.");
