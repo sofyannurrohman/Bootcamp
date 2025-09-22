@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BootcampDay7FormattingAndParsing")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8016be479095226a4de0ef86dea5ca75bde2b598")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+62c94f4d4c8443cca49e4536586005a2f270a554")]
 [assembly: System.Reflection.AssemblyProductAttribute("BootcampDay7FormattingAndParsing")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BootcampDay7FormattingAndParsing")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
