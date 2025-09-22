@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BootcampDay6EnumeratorIterator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+62c94f4d4c8443cca49e4536586005a2f270a554")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3da45f409db2d2c78290b30f23d5116e308661a6")]
 [assembly: System.Reflection.AssemblyProductAttribute("BootcampDay6EnumeratorIterator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BootcampDay6EnumeratorIterator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
