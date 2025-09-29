@@ -5,20 +5,20 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BootcampDay1Task", "BootcampDay1Task.csproj", "{7B4C83F3-9350-C479-8FC0-B9FD09A2CACB}"
 EndProject
 Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7B4C83F3-9350-C479-8FC0-B9FD09A2CACB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7B4C83F3-9350-C479-8FC0-B9FD09A2CACB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7B4C83F3-9350-C479-8FC0-B9FD09A2CACB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7B4C83F3-9350-C479-8FC0-B9FD09A2CACB}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {5F13EA4B-0FD7-4BB7-9195-095B4933BF31}
-	EndGlobalSection
+    GlobalSection(SolutionConfigurationPlatforms) = preSolution
+        Debug|Any CPU = Debug|Any CPU
+        Release|Any CPU = Release|Any CPU
+    EndGlobalSection
+    GlobalSection(ProjectConfigurationPlatforms) = postSolution
+        {7B4C83F3-9350-C479-8FC0-B9FD09A2CACB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+        {7B4C83F3-9350-C479-8FC0-B9FD09A2CACB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+        {7B4C83F3-9350-C479-8FC0-B9FD09A2CACB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+        {7B4C83F3-9350-C479-8FC0-B9FD09A2CACB}.Release|Any CPU.Build.0 = Release|Any CPU
+    EndGlobalSection
+    GlobalSection(SolutionProperties) = preSolution
+        HideSolutionNode = FALSE
+    EndGlobalSection
+    GlobalSection(ExtensibilityGlobals) = postSolution
+        SolutionGuid = {5F13EA4B-0FD7-4BB7-9195-095B4933BF31}
+    EndGlobalSection
 EndGlobal
