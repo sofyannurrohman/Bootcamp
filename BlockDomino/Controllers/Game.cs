@@ -12,9 +12,9 @@ namespace BlockDomino.Controllers
         private readonly IDeck _deck;
         private readonly IBoard _board;
         private byte _currentTurn;
-        public int ScoreLimit { get; set; } = 50;
-        public IReadOnlyList<IPlayer> Players => _players.AsReadOnly();
+        public int ScoreLimit { get; set; } = 30;
         public Action<IPlayer> OnGameOver;
+        public IReadOnlyList<IPlayer> Players => _players.AsReadOnly();
         public Game(List<IPlayer> players, IDeck deck, IBoard board)
         {
             if (players == null || players.Count < 2 || players.Count > 4)
@@ -82,9 +82,6 @@ namespace BlockDomino.Controllers
 
         #region Start / Round management
 
-        /// <summary>
-        /// Start a new match (sets scores to 0) and deals the first round.
-        /// </summary>
         public void StartMatch()
         {
             foreach (var p in _players)
@@ -93,9 +90,6 @@ namespace BlockDomino.Controllers
             StartRound();
         }
 
-        /// <summary>
-        /// Prepares and starts a new round: builds deck, shuffles, deals, picks starter by highest double.
-        /// </summary>
         public void StartRound()
         {
             // prepare deck and deal
@@ -155,7 +149,6 @@ namespace BlockDomino.Controllers
         #endregion
 
         #region Gameplay helpers / moves
-
         public void DisplayBoard()
         {
             if (_board.DominoTiles.Count == 0)
@@ -167,9 +160,8 @@ namespace BlockDomino.Controllers
             Console.WriteLine(string.Join(" ", _board.DominoTiles.Select(t => t.ToString())));
         }
 
-        /// <summary>
+        
         /// Shows only actually playable tiles for the player (taking orientation into account).
-        /// </summary>
         public void CheckPlayableDominoPlayerHand(IPlayer player, byte[] openEnds)
         {
             var playable = player.Hand
@@ -186,10 +178,9 @@ namespace BlockDomino.Controllers
                 string.Join(", ", playable.Select(x => x.ToString())));
         }
 
-        /// <summary>
+        
         /// Attempts to play a domino from a player's hand (auto-detect left/right and flip if necessary).
         /// Returns true if the play succeeded.
-        /// </summary>
         public bool PlayDominoTile(IPlayer player, IDominoTile dominoTile)
         {
             // If board empty, simply place it
@@ -265,9 +256,8 @@ namespace BlockDomino.Controllers
 
         public IPlayer GetCurrentPlayer() => _players[_currentTurn];
 
-        /// <summary>
+        
         /// Determines whether the current tile can actually be placed on either end (orientation-aware).
-        /// </summary>
         public bool CanPlay(IDominoTile tile)
         {
             if (_board.DominoTiles.Count == 0) return true;
@@ -310,11 +300,10 @@ namespace BlockDomino.Controllers
 
         #region Round resolution & scoring
 
-        /// <summary>
+        
         /// Called when a round ends (either someone emptied their hand or board is locked).
         /// This method calculates pip totals, awards points to round winner (if unique), and returns the round winner.
         /// If there is a tie for lowest pip total, no points are awarded and this returns null.
-        /// </summary>
         public IPlayer? ResolveRound()
         {
             // 1) Compute pip sums for all players

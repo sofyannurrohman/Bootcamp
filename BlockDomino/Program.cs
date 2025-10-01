@@ -24,7 +24,7 @@ namespace BlockDomino.Views
 
             Game game = new Game(players, deck, board)
             {
-                ScoreLimit = 50
+                ScoreLimit = 30
             };
 
             game.OnGameOver += finalWinner =>
