@@ -20,7 +20,7 @@ public class TaskService : ITaskService
     }
     public async Task AddTaskAsync(string title)
     {
-        _logger.LogInformation("Adding new task {@Title}", title);
+        _logger.LogInformation("Adding new task {Title}", title);
         var task = new TaskItem(title);
         await _taskRepository.AddAsync(task);
     }
