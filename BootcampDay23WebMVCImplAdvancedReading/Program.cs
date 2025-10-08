@@ -1,12 +1,16 @@
 using BootcampDay23AdvancedReading.Repository;
 using BootcampDay23AdvancedReading.Services;
+using Microsoft.EntityFrameworkCore;
+using BootcampDay23AdvancedReading.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
 builder.Services.AddControllersWithViews();
-builder.Services.AddSingleton<ITaskRepository, TaskRepository>();
-builder.Services.AddSingleton<ITaskService, TaskService>();
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+builder.Services.AddScoped<ITaskService, TaskService>();
 
 var app = builder.Build();
 
