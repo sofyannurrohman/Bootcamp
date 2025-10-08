@@ -1,0 +1,49 @@
+@model IEnumerable<BootcampDay23AdvancedReading.Models.TaskItem>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Status</th>
+            <th style="width:150px;">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model)
+        {
+            <tr>
+                <td>@task.Title</td>
+                <td>
+                    @if (task.IsCompleted)
+                    {
+                        <span class="badge bg-success">Completed</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-warning text-dark">Pending</span>
+                    }
+                </td>
+                <td>
+                    @if (!task.IsCompleted)
+                    {
+                        <form asp-action="Complete" method="post" class="d-inline">
+                            <input type="hidden" name="id" value="@task.Id" />
+                            <button type="submit" class="btn btn-sm btn-success">Complete</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <button class="btn btn-sm btn-secondary" disabled>Done</button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info text-center">
+        No tasks yet. Add one above!
+    </div>
+}
