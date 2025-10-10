@@ -3,37 +3,46 @@
 @attribute [Authorize]
 
 @inject HttpClient Http
+@inject NavigationManager Navigation
+@inject IJSRuntime JS
 
 <h2 class="text-2xl font-semibold mb-4">Tasks</h2>
 
-<table class="min-w-full bg-white rounded shadow overflow-hidden">
-    <thead class="bg-gray-200 text-left">
-        <tr>
-            <th class="px-4 py-2">ID</th>
-            <th class="px-4 py-2">Project</th>
-            <th class="px-4 py-2">Title</th>
-            <th class="px-4 py-2">Status</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (tasks == null)
-        {
-            <tr><td colspan="4" class="px-4 py-2">Loading...</td></tr>
-        }
-        else
-        {
-            @foreach (var task in tasks)
+<div class="overflow-x-auto">
+    <table class="min-w-full bg-white rounded shadow overflow-hidden">
+        <thead class="bg-gray-200 text-left">
+            <tr>
+                <th class="px-4 py-2">ID</th>
+                <th class="px-4 py-2">Project</th>
+                <th class="px-4 py-2">Title</th>
+                <th class="px-4 py-2">Status</th>
+                <th class="px-4 py-2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (tasks == null)
             {
-                <tr class="border-b">
-                    <td class="px-4 py-2">@task.Id</td>
-                    <td class="px-4 py-2">@task.ProjectName</td>
-                    <td class="px-4 py-2">@task.Title</td>
-                    <td class="px-4 py-2">@task.Status</td>
-                </tr>
+                <tr><td colspan="5" class="px-4 py-2 text-gray-600">Loading tasks...</td></tr>
             }
-        }
-    </tbody>
-</table>
+            else
+            {
+                @foreach (var task in tasks)
+                {
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="px-4 py-2">@task.Id</td>
+                        <td class="px-4 py-2">@task.ProjectName</td>
+                        <td class="px-4 py-2">@task.Title</td>
+                        <td class="px-4 py-2">@task.Status</td>
+                        <td class="px-4 py-2 space-x-2">
+                            <button class="bg-blue-500 text-white px-2 py-1 rounded" @onclick="() => EditTask(task.Id)">Edit</button>
+                            <button class="bg-red-500 text-white px-2 py-1 rounded" @onclick="() => DeleteTask(task.Id)">Delete</button>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
 
 @code {
     private List<TaskProjectDto> tasks;
@@ -41,6 +50,23 @@
     protected override async Task OnInitializedAsync()
     {
         tasks = await Http.GetFromJsonAsync<List<TaskProjectDto>>("api/TaskProject");
+    }
+
+    private void EditTask(int taskId)
+    {
+        Navigation.NavigateTo($"/tasks/edit/{taskId}");
+    }
+
+    private async Task DeleteTask(int taskId)
+    {
+        bool confirmed = await JS.InvokeAsync<bool>("confirm", $"Are you sure you want to delete task {taskId}?");
+        if (!confirmed) return;
+
+        var response = await Http.DeleteAsync($"api/TaskProject/{taskId}");
+        if (response.IsSuccessStatusCode)
+        {
+            tasks = tasks?.Where(t => t.Id != taskId).ToList();
+        }
     }
 
     public class TaskProjectDto
