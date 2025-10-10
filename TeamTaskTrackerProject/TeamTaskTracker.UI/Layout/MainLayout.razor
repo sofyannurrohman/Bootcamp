@@ -1,0 +1,46 @@
+﻿@inherits LayoutComponentBase
+
+<div class="flex min-h-screen bg-gray-100 text-gray-900">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-blue-700 text-white flex flex-col">
+        <div class="p-4 text-2xl font-semibold border-b border-blue-600">
+            Team Task Tracker
+        </div>
+        <div class="space-y-2">
+            <NavLink href="/" class="block px-4 py-2 rounded hover:bg-blue-600 transition" ActiveClass="bg-blue-800">
+                Home
+            </NavLink>
+            <NavLink href="/projects" class="block px-4 py-2 rounded hover:bg-blue-600 transition"
+                ActiveClass="bg-blue-800">
+                Projects
+            </NavLink>
+            <NavLink href="/tasks" class="block px-4 py-2 rounded hover:bg-blue-600 transition"
+                ActiveClass="bg-blue-800">
+                Tasks
+            </NavLink>
+            <NavLink href="/users" class="block px-4 py-2 rounded hover:bg-blue-600 transition"
+                ActiveClass="bg-blue-800">
+                Users
+            </NavLink>
+            <NavLink href="/taskactivities" class="block px-4 py-2 rounded hover:bg-blue-600 transition"
+                ActiveClass="bg-blue-800">
+                Task Activities
+            </NavLink>
+        </div>
+        <footer class="p-4 text-sm border-t border-blue-600 text-center">
+            © 2025 Team Tracker
+        </footer>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col">
+        
+
+        <!-- Body -->
+        <main class="flex-1 p-6 overflow-y-auto">
+            <article class="bg-white rounded-xl shadow p-6">
+                @Body
+            </article>
+        </main>
+    </div>
+</div>

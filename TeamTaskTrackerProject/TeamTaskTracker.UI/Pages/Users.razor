@@ -1,0 +1,89 @@
+@page "/users"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@inject IJSRuntime JS
+
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<h2 class="text-3xl font-bold mb-6 text-gray-800">Users</h2>
+
+<table class="min-w-full bg-white rounded-lg shadow overflow-hidden">
+    <thead class="bg-gray-100 text-gray-700">
+        <tr>
+            <th class="px-4 py-3 text-left">ID</th>
+            <th class="px-4 py-3 text-left">Name</th>
+            <th class="px-4 py-3 text-left">Email</th>
+            <th class="px-4 py-3 text-left">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (users == null)
+        {
+            <tr>
+                <td colspan="4" class="px-4 py-3 text-gray-500 text-center">Loading...</td>
+            </tr>
+        }
+        else if (!users.Any())
+        {
+            <tr>
+                <td colspan="4" class="px-4 py-3 text-gray-500 text-center">No users found</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var user in users)
+            {
+                <tr class="border-b hover:bg-gray-50">
+                    <td class="px-4 py-3">@user.Id</td>
+                    <td class="px-4 py-3">@user.Name</td>
+                    <td class="px-4 py-3">@user.Email</td>
+                    <td class="px-4 py-3 space-x-2">
+                        <button class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700" @onclick="() => EditUser(user.Id)">Edit</button>
+                        <button class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700" @onclick="() => DeleteUser(user.Id)">Delete</button>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@code {
+    private List<UserDto>? users;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            users = await Http.GetFromJsonAsync<List<UserDto>>("api/User");
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error loading users: {ex.Message}");
+        }
+    }
+
+    private void EditUser(int userId)
+    {
+        Navigation.NavigateTo($"/users/edit/{userId}");
+    }
+
+    private async Task DeleteUser(int userId)
+    {
+        bool confirmed = await JS.InvokeAsync<bool>("confirm", $"Are you sure you want to delete user {userId}?");
+        if (!confirmed) return;
+
+        var response = await Http.DeleteAsync($"api/User/{userId}");
+        if (response.IsSuccessStatusCode)
+        {
+            users = users?.Where(u => u.Id != userId).ToList();
+        }
+    }
+
+    public class UserDto
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = null!;
+        public string Email { get; set; } = null!;
+    }
+}

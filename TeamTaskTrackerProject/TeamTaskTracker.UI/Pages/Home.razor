@@ -1,0 +1,95 @@
+﻿@page "/"
+@inject NavigationManager Navigation
+
+<AuthorizeView>
+    <Authorized>
+        <h1>Welcome Home!</h1>
+    </Authorized>
+    <NotAuthorized>
+        @code {
+            protected override void OnInitialized()
+            {
+                Navigation.NavigateTo("/login");
+            }
+        }
+    </NotAuthorized>
+</AuthorizeView>
+
+@inject HttpClient Http
+@using System.Net.Http.Json
+@using Microsoft.AspNetCore.Authorization
+
+<PageTitle>Home</PageTitle>
+
+<h1 class="text-3xl font-bold mb-6">Welcome!</h1>
+<p class="text-gray-700 mb-6">
+    This is your Team Task Tracker app. Use the sidebar to navigate through Projects, Tasks, Users, and Task Activities.
+</p>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- Projects Card -->
+    <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center">
+        <h2 class="text-xl font-semibold mb-2">Projects</h2>
+        <p class="text-3xl font-bold">@projectCount</p>
+    </div>
+
+    <!-- Tasks Card -->
+    <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center">
+        <h2 class="text-xl font-semibold mb-2">Tasks</h2>
+        <p class="text-3xl font-bold">@taskCount</p>
+    </div>
+
+    <!-- Users Card -->
+    <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center">
+        <h2 class="text-xl font-semibold mb-2">Users</h2>
+        <p class="text-3xl font-bold">@userCount</p>
+    </div>
+
+    <!-- Task Activities Card -->
+    <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center">
+        <h2 class="text-xl font-semibold mb-2">Task Activities</h2>
+        <p class="text-3xl font-bold">@taskActivityCount</p>
+    </div>
+</div>
+
+@code {
+    private int projectCount = 0;
+    private int taskCount = 0;
+    private int userCount = 0;
+    private int taskActivityCount = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        projectCount = (await Http.GetFromJsonAsync<List<ProjectDto>>("api/Project"))?.Count ?? 0;
+        taskCount = (await Http.GetFromJsonAsync<List<TaskDto>>("api/TaskProject"))?.Count ?? 0;
+        userCount = (await Http.GetFromJsonAsync<List<UserDto>>("api/User"))?.Count ?? 0;
+        taskActivityCount = (await Http.GetFromJsonAsync<List<TaskActivityDto>>("api/TaskActivity"))?.Count ?? 0;
+    }
+
+    public class ProjectDto
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = null!;
+        public string GoalPeriod { get; set; } = null!;
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+    }
+
+    public class TaskDto
+    {
+        public int Id { get; set; }
+        public string Title { get; set; } = null!;
+    }
+
+    public class UserDto
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = null!;
+    }
+
+    public class TaskActivityDto
+    {
+        public int Id { get; set; }
+        public string Description { get; set; } = null!;
+    }
+}

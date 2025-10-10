@@ -1,0 +1,53 @@
+@page "/tasks"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+@inject HttpClient Http
+
+<h2 class="text-2xl font-semibold mb-4">Tasks</h2>
+
+<table class="min-w-full bg-white rounded shadow overflow-hidden">
+    <thead class="bg-gray-200 text-left">
+        <tr>
+            <th class="px-4 py-2">ID</th>
+            <th class="px-4 py-2">Project</th>
+            <th class="px-4 py-2">Title</th>
+            <th class="px-4 py-2">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (tasks == null)
+        {
+            <tr><td colspan="4" class="px-4 py-2">Loading...</td></tr>
+        }
+        else
+        {
+            @foreach (var task in tasks)
+            {
+                <tr class="border-b">
+                    <td class="px-4 py-2">@task.Id</td>
+                    <td class="px-4 py-2">@task.ProjectName</td>
+                    <td class="px-4 py-2">@task.Title</td>
+                    <td class="px-4 py-2">@task.Status</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@code {
+    private List<TaskProjectDto> tasks;
+
+    protected override async Task OnInitializedAsync()
+    {
+        tasks = await Http.GetFromJsonAsync<List<TaskProjectDto>>("api/TaskProject");
+    }
+
+    public class TaskProjectDto
+    {
+        public int Id { get; set; }
+        public string Title { get; set; } = null!;
+        public string Status { get; set; } = null!;
+        public string ProjectName { get; set; } = null!;
+    }
+}

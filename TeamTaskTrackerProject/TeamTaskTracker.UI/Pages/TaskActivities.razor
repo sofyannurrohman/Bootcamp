@@ -1,0 +1,21 @@
+@page "/taskactivities/{TaskId:int}"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+@inject HttpClient Http
+@code {
+    [Parameter] public int TaskId { get; set; }
+    private List<TaskActivityDto> activities;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        activities = await Http.GetFromJsonAsync<List<TaskActivityDto>>($"api/TaskActivitiy/{TaskId}");
+    }
+
+    public class TaskActivityDto
+    {
+        public int Id { get; set; }
+        public string Description { get; set; } = null!;
+        public DateTime CreatedAt { get; set; }
+    }
+}
